@@ -1,8 +1,8 @@
 {
     "project": "Toyota Microsite Blocks Library",
-    "host": "main--demo--cogeds.aem.live",
-    "previewHost": "main--demo--cogeds.aem.page",
-    "liveHost": "main--demo--cogeds.aem.live",
+    "host": "main--demo-eds-tmna--balakumar-r.aem.live",
+    "previewHost": "main--demo-eds-tmna--balakumar-r.aem.page",
+    "liveHost": "main--demo-eds-tmna--balakumar-r.aem.live",
     "plugins": [
         {
             "id": "library",
