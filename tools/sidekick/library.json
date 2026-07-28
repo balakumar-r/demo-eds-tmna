@@ -10,20 +10,12 @@
     "limit": 4,
     "data": [
       {
+        "name": "Vehicle select",
+        "path": "tools/sidekick/blocks/vehicle-garage"
+      },
+      {
         "name": "Cards",
         "path": "tools/sidekick/blocks/cards"
-      },
-      {
-        "name": "Columns",
-        "path": "tools/sidekick/blocks/columns"
-      },
-      {
-        "name": "Hero",
-        "path": "tools/sidekick/blocks/hero"
-      },
-      {
-        "name": "Customcomponent",
-        "path": "tools/sidekick/blocks/custom-component"
       }
     ]
   }
