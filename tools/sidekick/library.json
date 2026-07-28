@@ -11,11 +11,11 @@
     "data": [
       {
         "name": "Vehicle select",
-        "path": "/tools/sidekick/blocks/vehicle-garage"
+        "path": "tools/sidekick/blocks/vehicle-garage"
       },
       {
         "name": "Cards",
-        "path": "/tools/sidekick/blocks/cards"
+        "path": "tools/sidekick/blocks/cards"
       }
     ]
   }
