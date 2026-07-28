@@ -17,6 +17,17 @@ function styles() {
     .pipe(browserSync.stream({ match: '**/*.css' })); // inject CSS into browser
 }
 
+// Compile global styles.scss to styles/styles.css
+function globalStyles() {
+  return src('styles/styles.scss', { sourcemaps: true })
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest('styles'))
+    .pipe(browserSync.stream({ match: '**/*.css' }));
+}
+
 function serve() {
   // By default proxy the live site so localhost:3003 loads index from da.live.
   // Use BS_PROXY to override if you want a different backend.
@@ -56,12 +67,13 @@ function serve() {
 
   // Watch SCSS (including partials). When partials change we still run the styles task so dependent CSS updates.
   watch('blocks/**/*.scss', styles);
+  watch('styles/**/*.scss', globalStyles);
 
   // Watch other files (html, markup, etc.) and reload full page on changes
   watch(['blocks/**/*.html', '*.html', 'index.html']).on('change', browserSync.reload);
 }
 
-exports.styles = styles;
-exports.serve = series(styles, serve);
+exports.styles = series(globalStyles, styles);
+exports.serve = series(exports.styles, serve);
 exports.watch = exports.serve;
 exports.default = exports.serve;
