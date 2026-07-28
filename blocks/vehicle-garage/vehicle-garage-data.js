@@ -1,0 +1,47 @@
+export const vehicleData = {
+  toyota: {
+    '4Runner': { years: [2025, 2024, 2023, 2022, 2021] },
+    '86': { years: [2020, 2019, 2018] },
+    Avalon: { years: [2022, 2021, 2020, 2019] },
+    'bZ4X': { years: [2025, 2024, 2023] },
+    'C-HR': { years: [2022, 2021, 2020] },
+    Camry: { years: [2025, 2024, 2023, 2022, 2021] },
+    Corolla: { years: [2025, 2024, 2023, 2022, 2021] },
+    'Corolla Cross': { years: [2025, 2024, 2023, 2022] },
+    Crown: { years: [2025, 2024, 2023] },
+    'GR Corolla': { years: [2025, 2024, 2023] },
+    'GR86': { years: [2025, 2024, 2023, 2022] },
+    'Grand Highlander': { years: [2025, 2024, 2023] },
+    Highlander: { years: [2025, 2024, 2023, 2022, 2021] },
+    'Land Cruiser': { years: [2025, 2024] },
+    Mirai: { years: [2025, 2024, 2023] },
+    Prius: { years: [2025, 2024, 2023] },
+    RAV4: { years: [2025, 2024, 2023, 2022, 2021] },
+    Sequoia: { years: [2025, 2024, 2023] },
+    Sienna: { years: [2025, 2024, 2023, 2022] },
+    Tacoma: { years: [2025, 2024] },
+    Tundra: { years: [2025, 2024, 2023] },
+    Venza: { years: [2025, 2024, 2023] },
+    Yaris: { years: [2020, 2019, 2018] },
+  },
+  lexus: {
+    ES: { years: [2025, 2024, 2023, 2022] },
+    GX: { years: [2025, 2024, 2023] },
+    IS: { years: [2025, 2024, 2023, 2022] },
+    LC: { years: [2025, 2024, 2023] },
+    LS: { years: [2025, 2024, 2023] },
+    LX: { years: [2025, 2024, 2023] },
+    NX: { years: [2025, 2024, 2023, 2022] },
+    RC: { years: [2025, 2024, 2023] },
+    RX: { years: [2025, 2024, 2023, 2022] },
+    TX: { years: [2025, 2024, 2023] },
+    UX: { years: [2025, 2024, 2023] },
+  },
+};
+
+export const vinLookup = {
+  toyota: {
+    JTEPU5JR1R6256991: { model: '4Runner', year: 2024 },
+  },
+  lexus: {},
+};

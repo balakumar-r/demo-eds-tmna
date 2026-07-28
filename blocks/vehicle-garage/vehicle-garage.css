@@ -1,0 +1,436 @@
+.vehicle-garage {
+  position: relative;
+  width: 400px;
+}
+@media (width <= 768px) {
+  .vehicle-garage {
+    width: 100%;
+  }
+}
+.vehicle-garage-wrapper {
+  max-width: var(--columns-max-width);
+  margin-inline: auto;
+}
+.vehicle-garage-container {
+  position: fixed;
+  transition: top 0.3s;
+  top: 46px !important;
+  z-index: 9999;
+  height: auto;
+  background: var(--color-grey-bg);
+  clear: both;
+  box-sizing: border-box;
+  width: 100%;
+  border-top: 1px solid var(--color-grey-border);
+  box-shadow: 0 5px 10px -7px var(--color-black);
+  -moz-box-shadow: 0 5px 10px -7px var(--color-black);
+  -webkit-box-shadow: 0 5px 10px -7px var(--color-black);
+  left: 0;
+}
+.vehicle-garage__toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  height: 68px;
+  padding: 8px 16px;
+  background: var(--color-grey-bg-dark);
+  border: 1px solid var(--color-grey-border);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+.vehicle-garage__toggle[aria-expanded=true] {
+  background: var(--color-grey-bg-dark);
+}
+.vehicle-garage__logo {
+  transform: rotateY(180deg);
+  max-height: 52px;
+  max-width: 121px;
+}
+.vehicle-garage__label {
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: -0.8px;
+  color: var(--color-black);
+  position: relative;
+  left: -15px;
+  top: 2px;
+}
+.vehicle-garage__summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+.vehicle-garage__summary[hidden] {
+  display: none;
+}
+.vehicle-garage__summary-icon {
+  width: 56px;
+  height: 36px;
+  object-fit: contain;
+  flex-shrink: 0;
+  transform: rotateY(180deg);
+}
+.vehicle-garage__summary-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.vehicle-garage__summary-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: var(--color-black);
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.vehicle-garage__summary-vin {
+  font-size: 13px;
+  color: var(--color-vg-text-light);
+}
+.vehicle-garage__circle {
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  background: 0 0;
+  border-radius: 20px;
+  float: right;
+  border: 2px solid var(--color-red-cta);
+  top: 1pc;
+  left: 355px;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+.vehicle-garage__arrow {
+  border: solid var(--color-red-cta);
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  margin: 10px 0 0 10px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+.vehicle-garage__toggle[aria-expanded=true] .vehicle-garage__circle {
+  background: var(--color-red-cta);
+}
+.vehicle-garage__toggle[aria-expanded=true] .vehicle-garage__arrow {
+  transform: rotate(-136deg);
+  -webkit-transform: rotate(-136deg);
+  margin-top: 9pt;
+  border-color: var(--color-white);
+}
+.vehicle-garage__panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--color-grey-bg);
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
+  padding: 20px 15px 15px 45px;
+  box-sizing: border-box;
+  z-index: 999;
+  max-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  transition: all 0.5s ease-out;
+}
+@media (width <= 768px) {
+  .vehicle-garage__panel {
+    padding: 15px;
+  }
+}
+.vehicle-garage__panel[hidden] {
+  display: none;
+}
+.vehicle-garage__panel.show {
+  visibility: visible;
+  max-height: 600px;
+  transition: all 0.5s ease-in;
+}
+.vehicle-garage__panel.hide {
+  visibility: hidden;
+  max-height: 0;
+  padding: 0 16px;
+  transition: all 0.5s ease-out;
+}
+.vehicle-garage__row {
+  position: relative;
+  margin-bottom: 12px;
+}
+.vehicle-garage__row label {
+  display: inline;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-vg-text-light);
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+.vehicle-garage__findvin {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 10px;
+  color: #2674ad;
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.vehicle-garage__vin, .vehicle-garage__model, .vehicle-garage__year, .vehicle-garage__type {
+  width: 320px;
+  height: 41px;
+  box-sizing: border-box;
+  padding: 0 12px;
+  font-size: 13px;
+  color: var(--color-vg-text);
+  background: var(--color-grey-bg);
+  border: 1px solid var(--color-grey-border);
+  text-transform: uppercase;
+}
+.vehicle-garage__model, .vehicle-garage__year, .vehicle-garage__type {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  background: url("/icons/brri-select-arrow.png") right 15px center no-repeat #fff;
+}
+.vehicle-garage__vin {
+  background: var(--color-white);
+}
+.vehicle-garage__msg {
+  display: block;
+  min-height: 16px;
+  font-size: 12px;
+  color: var(--color-red-cta);
+  margin-top: 4px;
+}
+.vehicle-garage__or {
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-black);
+  margin: 16px 0;
+}
+.vehicle-garage__go-row {
+  margin-top: 16px;
+  text-align: center;
+}
+.vehicle-garage__go {
+  width: 60px;
+  background: var(--color-red-cta);
+  color: var(--color-white);
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  height: 60px;
+}
+@media (width <= 768px) {
+  .vehicle-garage__go {
+    width: 100%;
+  }
+}
+.vehicle-garage__go:disabled {
+  background: var(--color-grey-bg-dark);
+  cursor: not-allowed;
+}
+.vehicle-garage__go:not(:disabled):hover {
+  background: var(--color-red-dark);
+}
+.vehicle-garage__vinhelp {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 0;
+  width: 320px;
+  max-width: calc(100vw - 32px);
+  background: var(--color-white);
+  border: 2px solid var(--color-grey-border);
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  z-index: 1000;
+}
+.vehicle-garage__vinhelp[hidden] {
+  display: none;
+}
+.vehicle-garage__vinhelp-arrow {
+  position: absolute;
+  top: -9px;
+  left: 20px;
+  width: 16px;
+  height: 16px;
+  background: var(--color-white);
+  border-left: 2px solid var(--color-grey-border);
+  border-top: 2px solid var(--color-grey-border);
+  transform: rotate(45deg);
+}
+.vehicle-garage__vinhelp-close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-vg-text);
+  z-index: 1;
+}
+.vehicle-garage__vinhelp-tabs {
+  display: flex;
+  overflow-x: auto;
+  gap: 4px;
+  border-bottom: 1px solid var(--color-grey-border);
+  margin: 4px 22px 10px 4px;
+  scrollbar-width: thin;
+}
+.vehicle-garage__vinhelp-tab {
+  flex: 0 0 auto;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 8px 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-vg-text-light);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.vehicle-garage__vinhelp-tab[aria-selected=true] {
+  color: var(--color-black);
+  border-bottom-color: var(--color-red-cta);
+}
+.vehicle-garage__vinhelp-panel {
+  padding: 0 4px 4px;
+}
+.vehicle-garage__vinhelp-panel[hidden] {
+  display: none;
+}
+.vehicle-garage__vinhelp-caption {
+  font-size: 12px;
+  color: var(--color-vg-text-light);
+  margin: 0 0 8px;
+}
+.vehicle-garage__vinhelp-body {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.vehicle-garage__vinhelp-image {
+  width: 96px;
+  height: 64px;
+  object-fit: contain;
+  border: 1px solid var(--color-grey-border);
+  flex-shrink: 0;
+  background: var(--color-grey-bg);
+}
+.vehicle-garage__vinhelp-desc {
+  font-size: 13px;
+  color: var(--color-vg-text);
+  line-height: 1.4;
+}
+.vehicle-garage.brand-lexus {
+  height: 79px;
+}
+.vehicle-garage.brand-lexus .vehicle-garage__toggle {
+  background: var(--color-grey-bg);
+  min-height: 79px;
+  border: none;
+}
+.vehicle-garage.brand-lexus .vehicle-garage__toggle[aria-expanded=true] {
+  background: var(--color-grey-bg);
+}
+.vehicle-garage.brand-lexus .vehicle-garage__toggle[aria-expanded=true] .vehicle-garage__label {
+  color: #666666;
+}
+.vehicle-garage.brand-lexus .vehicle-garage__toggle .vehicle-garage__logo {
+  width: 81px;
+  height: 40px;
+}
+.vehicle-garage.brand-lexus .vehicle-garage__label {
+  text-transform: capitalize;
+  left: 10px;
+}
+.vehicle-garage.brand-lexus .vehicle-garage__circle {
+  border: none;
+  background: none;
+  top: 1.5pc;
+}
+.vehicle-garage.brand-lexus .vehicle-garage__arrow {
+  border-color: var(--color-black);
+}
+.vehicle-garage.brand-lexus .vehicle-garage__go {
+  background: var(--color-black);
+  width: 100%;
+}
+.vehicle-garage.brand-lexus .vehicle-garage__go:disabled {
+  background: hsla(0, 0%, 46.3%, 0.2);
+}
+.vehicle-garage.brand-lexus .vehicle-garage__go:not(:disabled):hover {
+  background: #333;
+}
+.vehicle-garage.brand-lexus .vehicle-garage__panel {
+  background: var(--color-grey-bg);
+}
+.vehicle-garage.brand-lexus .vehicle-garage__vinhelp-tab[aria-selected=true] {
+  border-bottom-color: var(--color-black);
+}
+.vehicle-garage.brand-lexus .vehicle-garage__row label {
+  color: var(--color-black);
+}
+.vehicle-garage.brand-lexus .vehicle-garage__findvin {
+  color: #6f716f;
+}
+.vehicle-garage.brand-lexus .vehicle-garage__model,
+.vehicle-garage.brand-lexus .vehicle-garage__year,
+.vehicle-garage.brand-lexus .vehicle-garage__type {
+  background: url("/icons/download.png") right 48% no-repeat #fff;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  min-height: 50px;
+  font-size: 13px;
+  letter-spacing: 0.2px;
+  line-height: 18px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #495057;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  outline-color: #a9a9a9;
+}
+.vehicle-garage.brand-lexus .vehicle-garage__model:focus-visible,
+.vehicle-garage.brand-lexus .vehicle-garage__year:focus-visible,
+.vehicle-garage.brand-lexus .vehicle-garage__type:focus-visible {
+  outline: #7e7e7e solid 4px;
+}
+@media (width <= 768px) {
+  .vehicle-garage {
+    max-width: 100%;
+  }
+  .vehicle-garage__panel {
+    position: static;
+    box-shadow: none;
+  }
+  .vehicle-garage__vinhelp {
+    position: fixed;
+    top: auto;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    width: auto;
+  }
+  .vehicle-garage__vinhelp-arrow {
+    display: none;
+  }
+  .vehicle-garage__summary-title {
+    font-size: 15px;
+  }
+}
+/*# sourceMappingURL=vehicle-garage.css.map */

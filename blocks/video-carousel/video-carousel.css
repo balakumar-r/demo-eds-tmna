@@ -1,0 +1,319 @@
+@charset "UTF-8";
+.video-carousel-wrapper {
+  max-width: var(--columns-max-width);
+  margin-inline: auto;
+  /* mobile — pad the wrapper so content doesn't stretch to the edges */
+}
+@media (width <= 768px) {
+  .video-carousel-wrapper {
+    padding: 0 16px;
+  }
+}
+
+.video-carousel {
+  --video-carousel-gap: 32px;
+  --video-carousel-card-width: calc((100% - var(--video-carousel-gap)) / 2.6);
+  --video-carousel-step: calc(var(--video-carousel-card-width) + var(--video-carousel-gap));
+  --video-carousel-radius: 8px;
+  --video-carousel-control-size: 48px;
+}
+@media (width <= 768px) {
+  .video-carousel {
+    --video-carousel-gap: 16px;
+    --video-carousel-card-width: 100%;
+    --video-carousel-step: calc(100% + var(--video-carousel-gap));
+  }
+}
+.video-carousel {
+  width: 100%;
+  overflow: hidden;
+  padding: 0 0 40px;
+}
+.video-carousel__viewport {
+  overflow: hidden;
+  width: 100%;
+}
+.video-carousel__track {
+  display: flex;
+  gap: var(--video-carousel-gap);
+  transition: transform 0.45s ease;
+  will-change: transform;
+}
+.video-carousel__card {
+  position: relative;
+  flex: 0 0 var(--video-carousel-card-width);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--video-carousel-radius);
+  padding: 0;
+  background: var(--color-black);
+  color: var(--color-white);
+  cursor: pointer;
+  text-align: left;
+  height: auto;
+  aspect-ratio: 16/9;
+}
+.video-carousel__card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 20%, rgba(0, 0, 0, 0.4) 62%, rgba(0, 0, 0, 0.82) 100%);
+  pointer-events: none;
+}
+.video-carousel__card:focus-visible {
+  outline: 3px solid #0078d4;
+  outline-offset: 4px;
+}
+.video-carousel__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+.video-carousel__card:hover .video-carousel__image, .video-carousel__card:focus-visible .video-carousel__image {
+  transform: scale(1.04);
+}
+.video-carousel__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 40px;
+  border-radius: 999px;
+  background: var(--color-white);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+}
+.video-carousel__play-icon {
+  display: block;
+  width: 0;
+  height: 0;
+  margin-left: 4px;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 9px solid var(--color-black);
+}
+.video-carousel__title {
+  position: absolute;
+  left: 32px;
+  right: 32px;
+  bottom: 32px;
+  z-index: 2;
+  display: block;
+  color: var(--color-white);
+  font-size: 20px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+@media (width >= 768px) {
+  .video-carousel__title {
+    font-size: 24px;
+  }
+}
+.video-carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 88px;
+  margin-top: 125px;
+}
+.video-carousel__nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--video-carousel-control-size);
+  height: 32px;
+  border: 0;
+  border-radius: 24px;
+  background: var(--color-black);
+  color: var(--color-white);
+  cursor: pointer;
+  transition: background-color 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+}
+.video-carousel__nav:hover:not(:disabled), .video-carousel__nav:focus-visible:not(:disabled) {
+  background: #1f1f1f;
+  transform: scale(1.04);
+}
+.video-carousel__nav:focus-visible {
+  outline: 3px solid #0078d4;
+  outline-offset: 3px;
+}
+.video-carousel__nav:disabled {
+  background: var(--color-chevron-expand);
+  color: var(--color-white);
+  cursor: not-allowed;
+  opacity: 1;
+}
+.video-carousel__nav-icon {
+  display: block;
+  margin-top: -4px;
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 1;
+}
+.video-carousel__pagination {
+  min-width: 72px;
+  color: var(--color-black);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+}
+.video-carousel__modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+.video-carousel__modal[hidden] {
+  display: none;
+}
+.video-carousel__modal--open {
+  opacity: 1;
+  visibility: visible;
+}
+.video-carousel__modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+}
+.video-carousel__modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(1120px, 100%);
+  max-height: calc(100vh - 64px);
+  border-radius: 12px;
+  color: var(--color-white);
+}
+.video-carousel__modal-close {
+  position: absolute;
+  top: 0;
+  right: 26px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 40px;
+  border: 0;
+  border-radius: 24px;
+  background: var(--color-white);
+  color: var(--color-black);
+  cursor: pointer;
+  font-size: 32px;
+  line-height: 1;
+}
+.video-carousel__modal-close:focus-visible {
+  outline: 3px solid #0078d4;
+  outline-offset: 3px;
+}
+.video-carousel__modal-content {
+  padding: 0 24px 0;
+}
+.video-carousel__modal-title {
+  margin: 0 52px 20px 0;
+  color: var(--color-white);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 40px;
+  font-family: tcomMed, HelveticaNeueMedium, Helvetica Neue Medium, Arial, sans-serif;
+}
+@media (width <= 768px) {
+  .video-carousel__modal-title {
+    font-size: 32px;
+  }
+}
+.video-carousel__video-holder {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--color-black);
+  aspect-ratio: 16/9;
+}
+.video-carousel__video, .video-carousel__iframe {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: var(--color-black);
+}
+.video-carousel--empty {
+  display: none;
+}
+
+.video-carousel-modal-open {
+  overflow: hidden;
+}
+
+@media (width <= 768px) {
+  .video-carousel {
+    --video-carousel-gap: 16px;
+    --video-carousel-card-width: 100%;
+    --video-carousel-step: calc(100% + var(--video-carousel-gap));
+    --video-carousel-control-size: 44px;
+    padding-bottom: 32px;
+  }
+  .video-carousel__title {
+    left: 20px;
+    right: 20px;
+    bottom: 24px;
+    font-size: 24px;
+    line-height: 1.25;
+  }
+  .video-carousel__play {
+    width: 74px;
+    height: 48px;
+  }
+  .video-carousel__controls {
+    gap: 44px;
+    margin-top: 32px;
+  }
+  .video-carousel__pagination {
+    min-width: 64px;
+    font-size: 20px;
+  }
+  .video-carousel__modal {
+    padding: 16px;
+    align-items: flex-start;
+  }
+  .video-carousel__modal-dialog {
+    max-height: calc(100vh - 32px);
+  }
+  .video-carousel__modal-close {
+    top: 65px;
+    right: 0;
+    width: 48px;
+    height: 32px;
+  }
+  .video-carousel__modal-content {
+    padding: 0;
+    padding-top: 64px;
+  }
+  .video-carousel__modal-title {
+    margin-right: 0;
+    font-size: 16px;
+    line-height: 24px;
+    width: 75%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .video-carousel__track, .video-carousel__image, .video-carousel__nav, .video-carousel__modal {
+    transition: none;
+  }
+}
+/*# sourceMappingURL=video-carousel.css.map */

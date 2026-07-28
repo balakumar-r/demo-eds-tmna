@@ -1,0 +1,510 @@
+@use '../../styles/tokens' as *;
+
+$vg-link: #2674ad;
+
+.vehicle-garage {
+    position: relative;
+    width: 400px;
+
+    @media (width <=$bp-sm) {
+        width: 100%;
+    }
+
+    &-wrapper {
+        max-width: var(--columns-max-width);
+        margin-inline: auto;
+    }
+
+    // ---------- toggle header ----------
+    &-container {
+        position: fixed;
+        transition: top .3s;
+        top: 46px !important;
+        z-index: 9999;
+        height: auto;
+        background: var(--color-grey-bg);
+        clear: both;
+        box-sizing: border-box;
+        width: 100%;
+        border-top: 1px solid var(--color-grey-border);
+        box-shadow: 0 5px 10px -7px var(--color-black);
+        -moz-box-shadow: 0 5px 10px -7px var(--color-black);
+        -webkit-box-shadow: 0 5px 10px -7px var(--color-black);
+        left: 0;
+    }
+
+    &__toggle {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        height: 68px;
+        padding: 8px 16px;
+        background: var(--color-grey-bg-dark);
+        border: 1px solid var(--color-grey-border);
+        cursor: pointer;
+        font: inherit;
+        text-align: left;
+
+        &[aria-expanded='true'] {
+            background: var(--color-grey-bg-dark);
+        }
+    }
+
+    &__logo {
+        transform: rotateY(180deg);
+        max-height: 52px;
+        max-width: 121px;
+    }
+
+    &__label {
+        font-size: 24px;
+        font-weight: 300;
+        letter-spacing: -0.8px;
+        color: var(--color-black);
+        position: relative;
+        left: -15px;
+        top: 2px;
+    }
+
+    // ---------- collapsed-header vehicle summary ----------
+    &__summary {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1;
+        min-width: 0;
+
+        &[hidden] {
+            display: none;
+        }
+    }
+
+    &__summary-icon {
+        width: 56px;
+        height: 36px;
+        object-fit: contain;
+        flex-shrink: 0;
+        transform: rotateY(180deg);
+    }
+
+    &__summary-text {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+    }
+
+    &__summary-title {
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        color: var(--color-black);
+        text-transform: uppercase;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__summary-vin {
+        font-size: 13px;
+        color: var(--color-vg-text-light);
+    }
+
+    &__circle {
+        width: 28px;
+        height: 28px;
+        position: absolute;
+        background: 0 0;
+        border-radius: 20px;
+        float: right;
+        border: 2px solid var(--color-red-cta);
+        top: 1pc;
+        left: 355px;
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+
+    &__arrow {
+        border: solid var(--color-red-cta);
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 3px;
+        margin: 10px 0 0 10px;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+    }
+
+    &__toggle[aria-expanded='true'] &__circle {
+        background: var(--color-red-cta);
+    }
+
+    &__toggle[aria-expanded='true'] &__arrow {
+        transform: rotate(-136deg);
+        -webkit-transform: rotate(-136deg);
+        margin-top: 9pt;
+        border-color: var(--color-white);
+    }
+
+    // ---------- dropdown panel ----------
+    &__panel {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--color-grey-bg);
+        box-shadow: 0 8px 8px rgba(0, 0, 0, .3);
+        padding: 20px 15px 15px 45px;
+        box-sizing: border-box;
+        z-index: 999;
+        max-height: 0;
+        overflow: hidden;
+        visibility: hidden;
+        transition: all 0.5s ease-out;
+
+        @media (width <=$bp-sm) {
+            padding: 15px;
+        }
+
+        &[hidden] {
+            display: none;
+        }
+
+        &.show {
+            visibility: visible;
+            max-height: 600px;
+            transition: all 0.5s ease-in;
+        }
+
+        &.hide {
+            visibility: hidden;
+            max-height: 0;
+            padding: 0 16px;
+            transition: all 0.5s ease-out;
+        }
+    }
+
+    &__row {
+        position: relative;
+        margin-bottom: 12px;
+
+        label {
+            display: inline;
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--color-vg-text-light);
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+    }
+
+    &__findvin {
+        background: none;
+        border: none;
+        padding: 0;
+        margin-left: 10px;
+        color: $vg-link;
+        font-size: 13px;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    &__vin,
+    &__model,
+    &__year,
+    &__type {
+        width: 320px;
+        height: 41px;
+        box-sizing: border-box;
+        padding: 0 12px;
+        font-size: 13px;
+        color: var(--color-vg-text);
+        background: var(--color-grey-bg);
+        border: 1px solid var(--color-grey-border);
+        text-transform: uppercase;
+    }
+
+    &__model,
+    &__year,
+    &__type {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        appearance: none;
+        background: url('/icons/brri-select-arrow.png') right 15px center no-repeat #fff;
+    }
+
+    &__vin {
+        background: var(--color-white);
+    }
+
+    &__msg {
+        display: block;
+        min-height: 16px;
+        font-size: 12px;
+        color: var(--color-red-cta);
+        margin-top: 4px;
+    }
+
+    &__or {
+        text-align: center;
+        font-size: 13px;
+        color: var(--color-black);
+        margin: 16px 0;
+    }
+
+    &__go-row {
+        margin-top: 16px;
+        text-align: center;
+    }
+
+    &__go {
+        width: 60px;
+        background: var(--color-red-cta);
+        color: var(--color-white);
+        border: none;
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        height: 60px;
+
+        @media (width <=$bp-sm) {
+            width: 100%;
+        }
+
+        &:disabled {
+            background: var(--color-grey-bg-dark);
+            cursor: not-allowed;
+        }
+
+        &:not(:disabled):hover {
+            background: var(--color-red-dark);
+        }
+    }
+
+    // ---------- "Where can I find this?" tabbed tooltip ----------
+    &__vinhelp {
+        position: absolute;
+        top: calc(100% + 14px);
+        left: 0;
+        width: 320px;
+        max-width: calc(100vw - 32px);
+        background: var(--color-white);
+        border: 2px solid var(--color-grey-border);
+        border-radius: 8px;
+        box-shadow: 0 8px 16px rgb(0 0 0 / 20%);
+        padding: 10px;
+        z-index: 1000;
+
+        &[hidden] {
+            display: none;
+        }
+    }
+
+    &__vinhelp-arrow {
+        position: absolute;
+        top: -9px;
+        left: 20px;
+        width: 16px;
+        height: 16px;
+        background: var(--color-white);
+        border-left: 2px solid var(--color-grey-border);
+        border-top: 2px solid var(--color-grey-border);
+        transform: rotate(45deg);
+    }
+
+    &__vinhelp-close {
+        position: absolute;
+        top: 6px;
+        right: 8px;
+        background: none;
+        border: none;
+        font-size: 18px;
+        line-height: 1;
+        cursor: pointer;
+        color: var(--color-vg-text);
+        z-index: 1;
+    }
+
+    &__vinhelp-tabs {
+        display: flex;
+        overflow-x: auto;
+        gap: 4px;
+        border-bottom: 1px solid var(--color-grey-border);
+        margin: 4px 22px 10px 4px;
+        scrollbar-width: thin;
+    }
+
+    &__vinhelp-tab {
+        flex: 0 0 auto;
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        padding: 8px 6px;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--color-vg-text-light);
+        white-space: nowrap;
+        cursor: pointer;
+
+        &[aria-selected='true'] {
+            color: var(--color-black);
+            border-bottom-color: var(--color-red-cta);
+        }
+    }
+
+    &__vinhelp-panel {
+        padding: 0 4px 4px;
+
+        &[hidden] {
+            display: none;
+        }
+    }
+
+    &__vinhelp-caption {
+        font-size: 12px;
+        color: var(--color-vg-text-light);
+        margin: 0 0 8px;
+    }
+
+    &__vinhelp-body {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    &__vinhelp-image {
+        width: 96px;
+        height: 64px;
+        object-fit: contain;
+        border: 1px solid var(--color-grey-border);
+        flex-shrink: 0;
+        background: var(--color-grey-bg);
+    }
+
+    &__vinhelp-desc {
+        font-size: 13px;
+        color: var(--color-vg-text);
+        line-height: 1.4;
+    }
+
+    // ---------- Lexus brand variant ----------
+    &.brand-lexus {
+        height: 79px;
+
+        .vehicle-garage__toggle {
+            background: var(--color-grey-bg);
+            min-height: 79px;
+            border: none;
+
+            &[aria-expanded='true'] {
+                background: var(--color-grey-bg);
+
+                .vehicle-garage__label {
+                    color: #666666;
+                }
+            }
+
+            .vehicle-garage__logo {
+                width: 81px;
+                height: 40px;
+            }
+        }
+
+        .vehicle-garage__label {
+            text-transform: capitalize;
+            left: 10px;
+        }
+
+        .vehicle-garage__circle {
+            border: none;
+            background: none;
+            top: 1.5pc;
+        }
+
+        .vehicle-garage__arrow {
+            border-color: var(--color-black);
+        }
+
+        .vehicle-garage__go {
+            background: var(--color-black);
+            width: 100%;
+
+            &:disabled {
+                background: hsla(0, 0%, 46.3%, .2);
+            }
+
+            &:not(:disabled):hover {
+                background: #333;
+            }
+        }
+
+        .vehicle-garage__panel {
+            background: var(--color-grey-bg);
+        }
+
+        .vehicle-garage__vinhelp-tab[aria-selected='true'] {
+            border-bottom-color: var(--color-black);
+        }
+
+        .vehicle-garage__row label {
+            color: var(--color-black);
+        }
+
+        .vehicle-garage__findvin {
+            color: #6f716f;
+        }
+
+        .vehicle-garage__model,
+        .vehicle-garage__year,
+        .vehicle-garage__type {
+            background: url('/icons/download.png') right 48% no-repeat #fff;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 0;
+            min-height: 50px;
+            font-size: 13px;
+            letter-spacing: .2px;
+            line-height: 18px;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: #495057;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            outline-color: #a9a9a9;
+
+            &:focus-visible {
+                outline: #7e7e7e solid 4px;
+            }
+        }
+    }
+
+    // ---------- small screens ----------
+    @media (width <=#{$bp-tablet}) {
+        max-width: 100%;
+
+        &__panel {
+            position: static;
+            box-shadow: none;
+        }
+
+        &__vinhelp {
+            position: fixed;
+            top: auto;
+            bottom: 12px;
+            left: 12px;
+            right: 12px;
+            width: auto;
+        }
+
+        &__vinhelp-arrow {
+            display: none;
+        }
+
+        &__summary-title {
+            font-size: 15px;
+        }
+    }
+}

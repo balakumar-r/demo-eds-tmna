@@ -10,6 +10,13 @@ export default async function decorate(block) {
   const footerMeta = getMetadata('footer');
   const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
   const fragment = await loadFragment(footerPath);
+  // if fragment failed to load, bail gracefully
+  if (!fragment) {
+    // leave block unchanged or show minimal placeholder
+    // eslint-disable-next-line no-console
+    console.warn('Footer fragment not found:', footerPath);
+    return;
+  }
 
   // decorate footer DOM
   block.textContent = '';
