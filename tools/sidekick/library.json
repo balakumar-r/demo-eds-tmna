@@ -1,0 +1,30 @@
+{
+  ":names": [
+    "blocks"
+  ],
+  ":version": 4,
+  ":type": "multi-sheet",
+  "blocks": {
+    "total": 4,
+    "offset": 0,
+    "limit": 4,
+    "data": [
+      {
+        "name": "Cards",
+        "path": "tools/sidekick/blocks/cards"
+      },
+      {
+        "name": "Columns",
+        "path": "tools/sidekick/blocks/columns"
+      },
+      {
+        "name": "Hero",
+        "path": "tools/sidekick/blocks/hero"
+      },
+      {
+        "name": "Customcomponent",
+        "path": "tools/sidekick/blocks/custom-component"
+      }
+    ]
+  }
+}
