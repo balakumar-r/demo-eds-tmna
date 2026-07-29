@@ -10,6 +10,11 @@
     "limit": 4,
     "data": [
       {
+        "name": "Hero Video",
+        "path": "/docs/library/blocks/hero-video",
+        "url": "https://github.com/balakumar-r/demo-eds-tmna/tree/main/blocks/hero-video"
+      },
+      {
         "name": "Hero",
         "path": "/docs/library/blocks/hero",
         "url": "https://github.com/balakumar-r/demo-eds-tmna/tree/main/blocks/hero"
