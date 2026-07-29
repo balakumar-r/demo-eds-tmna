@@ -11,12 +11,12 @@
     "data": [
       {
         "name": "Vehicle select",
-        "path": "/docs/library/blocks/vehicle-garage"
+        "path": "/docs/library/blocks/vehicle-garage",
         "url": "https://github.com/balakumar-r/demo-eds-tmna/tree/main/blocks/vehicle-garage"
       },
       {
         "name": "Cards",
-        "path": "/docs/library/blocks/card"
+        "path": "/docs/library/blocks/card",
         "url": "https://github.com/balakumar-r/demo-eds-tmna/tree/main/blocks/card"
       }
     ]
