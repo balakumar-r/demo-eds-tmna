@@ -1,119 +1,119 @@
 @use '../../styles/tokens' as *;
 
 .accordion-wrapper {
-  .accordion-v1 {
-    display: block;
-    max-width: 1054px;
-    margin: 0 auto;
-    padding-top: 35px;
-  }
-
-  .accordion-v1-item {
-    position: relative;
-    min-height: 40px;
-    padding: 18px 0 18px ;
-    border-top: 1px solid var(--color-chevron-expand);
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .accordion-v1-trigger {
-    display: flex;
-    align-items: flex-start;
-    position: relative;
-    width: 100%;
-    gap: var(--space-2xs);
-    background: transparent;
-    padding-left: 38px;
-    border: 0;
-    text-align: left;
-    cursor: default;
-    color: var(--color-black-light);
-    font-family: inherit;
-    font-size: 24px;
-    font-weight: var(--font-weight-bold);
-
-    @media (width >= #{$bp-tablet}) {
-      gap: var(--space-2xs);
+    .accordion-v1 {
+        display: block;
+        max-width: 1054px;
+        margin: 0 auto;
+        padding-top: 35px;
     }
 
-    &-text {
-      flex: 1;
-      cursor: pointer;
-
-      p {
-        margin: 0;
-      }
+    .accordion-v1-item {
+        position: relative;
+        min-height: 40px;
+        padding: 18px 0 18px;
+        border-top: 1px solid var(--color-chevron-expand);
+        border-bottom: 1px solid var(--color-border);
     }
 
-    &:focus-visible {
-      outline: 2px solid var(--color-focus-outline);
-      outline-offset: 2px;
+    .accordion-v1-trigger {
+        display: flex;
+        align-items: flex-start;
+        position: relative;
+        width: 100%;
+        gap: var(--space-2xs);
+        background: transparent;
+        padding-left: 38px;
+        border: 0;
+        text-align: left;
+        cursor: default;
+        color: var(--color-black-light);
+        font-family: inherit;
+        font-size: 24px;
+        font-weight: var(--font-weight-bold);
+
+        @media (width >=#{$bp-tablet}) {
+            gap: var(--space-2xs);
+        }
+
+        &-text {
+            flex: 1;
+            cursor: pointer;
+
+            p {
+                margin: 0;
+            }
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-focus-outline);
+            outline-offset: 2px;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 13px;
+            width: 11px;
+            height: 11px;
+            border-right: 2px solid var(--color-red-darker);
+            border-bottom: 2px solid var(--color-red-darker);
+            transform: rotate(-45deg);
+            transition: var(--chevron-transition);
+        }
+
+        &[aria-expanded='true']::before {
+            top: 9px;
+            width: 11px;
+            height: 11px;
+
+            border-right-color: var(--color-chevron-expand);
+            border-bottom-color: var(--color-chevron-expand);
+
+            transform: rotate(45deg);
+        }
     }
 
-    &::before {
-      content: '';
-      position: absolute;
-      left: 10px;
-      top: 13px;
-      width: 11px;
-      height: 11px;
-      border-right: 2px solid var(--color-red-darker);
-      border-bottom: 2px solid var(--color-red-darker);
-      transform: rotate(-45deg);
-      transition: var(--chevron-transition);
+    .accordion-v1-panel {
+        overflow: hidden;
+        transition: max-height 0.28s ease;
+
+        &[hidden] {
+            display: block;
+        }
+
+        &-inner {
+            margin: 0;
+            margin-top: 16px;
+            padding: 1px 1px 1px 38px;
+            color: var(--color-text-black--);
+            font-size: 24px;
+            line-height: 1.4;
+        }
+
+        &-inner>div,
+        &-inner p {
+            margin: 0;
+            padding: 0;
+        }
     }
-
-    &[aria-expanded='true']::before {
-      top: 9px;
-      width: 11px;
-      height:11px;
-
-      border-right-color: var(--color-chevron-expand);
-      border-bottom-color: var(--color-chevron-expand);
-
-      transform: rotate(45deg);
-    }
-  }
-
-  .accordion-v1-panel {
-    overflow: hidden;
-    transition: max-height 0.28s ease;
-
-    &[hidden] {
-      display: block;
-    }
-
-    &-inner {
-      margin: 0;
-      margin-top: 16px;
-      padding: 1px 1px 1px 38px;
-      color: var(--color-text-black--);
-      font-size: 24px;
-      line-height: 1.4;
-    }
-
-    &-inner > div,
-    &-inner p {
-      margin: 0;
-      padding: 0;
-    }
-  }
 }
 
 .faq-title {
-  max-width: 1054px;
-  margin: 0 auto;
+    max-width: 1054px;
+    margin: 0 auto;
 
-  h2 {
-    margin-bottom: 0;
+    h2 {
+        margin-bottom: 0;
 
-    color: var(--color-black);
+        color: var(--color-black);
 
-    font-size: 33px;
-    font-weight: var(--font-weight-bold);
-    line-height: 1.1;
-    letter-spacing: 1px;
-  }
+        font-size: 33px;
+        font-weight: var(--font-weight-bold);
+        line-height: 1.1;
+        letter-spacing: 1px;
+    }
 }
 
 /* ==========================
@@ -121,127 +121,128 @@
 ========================== */
 
 @media (max-width: #{$bp-tablet}) {
-  .accordion-wrapper {
-    .accordion-v1 {
-      max-width: 359px;
-      width: 100%;
-     // padding : 30px;
+    .accordion-wrapper {
+        .accordion-v1 {
+            max-width: 359px;
+            width: 100%;
+            // padding : 30px;
+        }
+
+        .accordion-v1-item {
+            padding-left: 22px;
+        }
+
+        .accordion-v1-trigger {
+            align-items: flex-start;
+            font-size: 24px;
+            padding-left: 22px;
+
+            &::before {
+                left: -14px;
+                top: 13px;
+                width: 11px;
+                height: 11px;
+            }
+
+            &[aria-expanded='true']::before {
+                top: 10px;
+            }
+        }
+
+        .accordion-v1-panel-inner {
+            font-size: 24px;
+            padding: 1px 1px 1px 22px;
+        }
     }
 
-    .accordion-v1-item {
-      padding-left:22px;
+    .faq-title {
+        max-width: 359px;
+
+        h2 {
+            font-size: var(--heading-font-size-l);
+        }
     }
-
-    .accordion-v1-trigger {
-      align-items: flex-start;
-      font-size: 24px;
-      padding-left:22px;
-
-      &::before {
-        left: -14px;
-        top: 13px;
-        width: 11px;
-        height: 11px;
-      }
-
-      &[aria-expanded='true']::before {
-        top: 10px;
-      }
-    }
-
-    .accordion-v1-panel-inner {
-      font-size: 24px;
-      padding: 1px 1px 1px 22px;
-    }
-  }
-
-  .faq-title {
-    max-width: 359px;
-
-    h2 {
-      font-size: var(--heading-font-size-l);
-    }
-  }
 }
 
-.accordion:has(.accordion-v2) {
-  max-width: $max-width-content;
-  margin: 0 auto;
-  padding: 32px;
-  @media (width >= #{$bp-tablet}) {
-    padding: 42px;
-  }
-}
 .accordion-v2 {
-  &__item {
-    border-bottom: 1px solid var(--color-gray-light);
+    max-width: $max-width-content;
+    margin: 0 auto;
+    padding: 32px;
 
-    &.active {
-      border-bottom: 0;
-    }
-  }
-
-  &__trigger {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 20px 0;
-    background: none;
-    border: 0;
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-  }
-
-  &__icon {
-    position: relative;
-    width: 20px;
-    height: 20px;
-    flex: 0 0 auto;
-
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      inset: 50% 0 auto 0;
-      height: 2.5px;
-      border-radius: 1px;
-      background: currentColor;
+    @media (width >=#{$bp-tablet}) {
+        padding: 42px;
     }
 
-    &::after {
-      transform: rotate(90deg);
-    }
-  }
+    &__item {
+        border-bottom: 1px solid var(--color-gray-light);
 
-  &__item--open &__icon::after {
-    transform: rotate(0);
-  }
-
-  &__links {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-    &-item {
-      padding: 8px 0;
+        &.active {
+            border-bottom: 0;
+        }
     }
 
-    a:any-link {
-      color: var(--color-black);
-      font-size: 14px;
-      letter-spacing: 0.7px;
-      &:hover {
-        color: var(--color-gray-light);
-        text-decoration: none;
-      }
+    &__trigger {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 20px 0;
+        background: none;
+        border: 0;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        cursor: pointer;
     }
-  }
 
-  &__link {
-    display: inline-block;
-  }
+    &__icon {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        flex: 0 0 auto;
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 50% 0 auto 0;
+            height: 2.5px;
+            border-radius: 1px;
+            background: currentColor;
+        }
+
+        &::after {
+            transform: rotate(90deg);
+        }
+    }
+
+    &__item--open &__icon::after {
+        transform: rotate(0);
+    }
+
+    &__links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        &-item {
+            padding: 8px 0;
+        }
+
+        a:any-link {
+            color: var(--color-black);
+            font-size: 14px;
+            letter-spacing: 0.7px;
+
+            &:hover {
+                color: var(--color-gray-light);
+                text-decoration: none;
+            }
+        }
+    }
+
+    &__link {
+        display: inline-block;
+    }
 }
