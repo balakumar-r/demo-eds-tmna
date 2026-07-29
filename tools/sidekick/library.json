@@ -10,6 +10,11 @@
     "limit": 4,
     "data": [
       {
+        "name": "Accordion",
+        "path": "/docs/library/blocks/accordion",
+        "url": "https://github.com/balakumar-r/demo-eds-tmna/tree/main/blocks/accordion"
+      },
+      {
         "name": "Video Carousel",
         "path": "/docs/library/blocks/video-carousel",
         "url": "https://github.com/balakumar-r/demo-eds-tmna/tree/main/blocks/video-carousel"
