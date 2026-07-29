@@ -10,6 +10,11 @@
     "limit": 4,
     "data": [
       {
+        "name": "Video Carousel",
+        "path": "/docs/library/blocks/video-carousel",
+        "url": "https://github.com/balakumar-r/demo-eds-tmna/tree/main/blocks/video-carousel"
+      },
+      {
         "name": "Vehicle select",
         "path": "/docs/library/blocks/vehicle-garage",
         "url": "https://github.com/balakumar-r/demo-eds-tmna/tree/main/blocks/vehicle-garage"
