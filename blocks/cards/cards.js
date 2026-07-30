@@ -1,4 +1,17 @@
+import { getBlockConfig } from '../../scripts/utils/block-config.js';
+
 export default function decorate(block) {
+  const { brand, className } = getBlockConfig(block);
+  if (brand === 'toyota') {
+console.log('Toyota block');
+}
+if (brand === 'lexus') {
+console.log('Lexus block');
+}
+
+
+
+console.log(className);
   const row = block.firstElementChild;
   if (!row) return;
 

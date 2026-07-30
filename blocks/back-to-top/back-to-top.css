@@ -1,0 +1,46 @@
+@charset "UTF-8";
+.back-to-top-container {
+  text-align: right;
+  max-width: var(--columns-max-width);
+  margin-inline: auto;
+  /* mobile — pad the wrapper so content doesn't stretch to the edges */
+  padding: 0 var(--space-s);
+}
+@media (width >= 768px) {
+  .back-to-top-container {
+    padding: 0;
+  }
+}
+.back-to-top-container.section {
+  margin: auto;
+}
+.back-to-top-container .back-to-top-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  border: 0;
+  box-shadow: var(--shadow-s);
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  background-color: var(--background-color);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+.back-to-top-container .back-to-top-btn:hover {
+  box-shadow: var(--shadow-m);
+}
+.back-to-top-container .back-to-top-btn .back-to-top-icon {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 14px solid var(--color-red-darker);
+}
+.back-to-top-container .back-to-top-btn .back-to-top-text {
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--heading-font-size-s);
+  color: var(--text-color);
+}
+/*# sourceMappingURL=back-to-top.css.map */
